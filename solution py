@@ -1,0 +1,18 @@
+class Solution:
+    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        arr = []
+        
+        for ast in asteroids:
+            if not arr or ast > 0:
+                arr.append(ast)
+            else:
+                while arr and arr[-1] > 0 and arr[-1] < abs(ast):
+                    arr.pop()
+
+                if arr and arr[-1] == abs(ast):
+                    arr.pop()
+                else:
+                    if not arr or arr[-1] < 0:
+                        arr.append(ast)
+        
+        return arr
